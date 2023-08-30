@@ -135,17 +135,23 @@
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me!</span></h2>
 
-        <form action="#">
+        <form action="https://formsubmit.co/8ec3afef7ee6f0cab5f2fa8a808216a2" method="POST">
             <div class="input-box">
-                <input type="text" placeholder ="Full Name" name="" id="">
-                <input type="email" placeholder ="Email Address" name="" id="">
+                <input type="text" placeholder ="Full Name" name="name" id="name">
+                <input type="email" placeholder ="Email Address" name="email" id="email">
             </div>
             <div class="input-box">
-                <input type="text" placeholder ="Mobile Number" name="" id="">
-                <input type="text" placeholder ="Email Subject" name="" id="">
+                <input type="text" placeholder ="Mobile Number" name="number" id="number">
+                <input type="text" placeholder ="Email Subject" name="subject" id="subject">
             </div>
             <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <input type="submit" value="Send Message" class="btn">
+
+            <input type="hidden" name="_next" value="http://127.0.0.1:5500/#home">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" value="[NEW CONTACT] - My Portfolio">
+
+            <input type="submit" name="submit" id="submit" class="btn" value="Send Message" >
         </form>
     </section>
 
