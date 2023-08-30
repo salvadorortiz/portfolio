@@ -55,8 +55,21 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right'});
 /* ================== typed js ================== */
 const typed = new Typed('.multiple-text',{
     strings: ['Frontend Developer', 'Backend Developer', 'Full Stack Developer'],
-    typeSpeed: 100,
-    backSpeed: 100,
-    backDelay: 1000,
+    typeSpeed: 10,
+    backSpeed: 10,
+    backDelay: 500,
     loop: true
 })
+
+/* ================== contact confirmation pop up  ================== */
+let popup =  document.querySelector('#confirmation-popup');
+let submit =  document.querySelector('#submit');
+let ok =  document.querySelector('#ok');
+
+submit.onclick = () => {
+    popup.classList.add("open-popup");
+}
+
+ok.onclick = () => {
+    popup.classList.remove("open-popup");
+}
