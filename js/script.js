@@ -61,15 +61,80 @@ const typed = new Typed('.multiple-text',{
     loop: true
 })
 
-/* ================== contact confirmation pop up  ================== */
-let popup =  document.querySelector('#confirmation-popup');
-let submit =  document.querySelector('#submit');
-let ok =  document.querySelector('#ok');
+/* ================== contact confirmation and error pop up  ================== */
+let popupConfirmation = document.querySelector('#confirmation-popup');
+let popupError = document.querySelector('#error-popup');
+let errorDetails = document.getElementById('error-details')
+let form = document.getElementById('form');
+let submitBtn = document.getElementById('submitBtn');
+let ok = document.querySelectorAll('.ok');
+let required = document.querySelectorAll('.required');
 
-submit.onclick = () => {
-    popup.classList.add("open-popup");
+ok.forEach(el => el.addEventListener('click', event => {
+    if(popupConfirmation.classList.contains("open-popup")){
+        popupConfirmation.classList.remove("open-popup");
+        form.submit();
+    }else{
+        popupError.classList.remove("open-popup");
+    }
+}));
+
+required.forEach(el => el.addEventListener('change', event => {
+    checkErrors();
+}));
+
+/* ================== contact form validation  ================== */
+
+function validateForm(e) {
+    e.preventDefault();
+    let error = checkErrors();
+    if(error !== ""){
+        errorDetails.innerHTML = error;
+        popupError.classList.add("open-popup");
+        return false;
+    }
+    submitBtn.disabled = true;
+    form.removeAttribute("onsubmit")
+    popupConfirmation.classList.add("open-popup");
 }
 
-ok.onclick = () => {
-    popup.classList.remove("open-popup");
+const checkErrors = () => {
+    let error = "";
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let message = document.getElementById('message');
+
+    if(isEmpty(name.value.trim())) {
+        name.classList.add("input-error");
+        error += "<li>Full name is required</li>";
+    }else{
+        name.classList.remove("input-error");
+    }
+
+    if(isEmpty(email.value.trim())) {
+        email.classList.add("input-error");
+        error += "<li>Email address is required</li>";
+
+    }else if(!isEmailValid(email.value.trim())) {
+        email.classList.add("input-error");
+        error += "<li>Email address is invalid</li>";
+    }else{
+        email.classList.remove("input-error");
+    }
+
+    if(isEmpty(message.value.trim())) {
+        message.classList.add("input-error");
+        error += "<li>Your message is required</li>";
+    }else{
+        message.classList.remove("input-error");
+    }
+
+    return error;
 }
+
+const isEmpty = value => value === '' ? true : false;
+
+const isEmailValid = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+};

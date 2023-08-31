@@ -17,6 +17,7 @@
     --text-color: #5f5e5e;
     --second-text-color: #ececec;
     --main-color: #158e5f;
+    --error-color: #c11f1f;
 }
 
 html {
@@ -334,6 +335,7 @@ span {
 }
 
 .contact form .input-box input,
+.contact form #name,
 .contact form textarea {
     width: 100%;
     padding: 1.5rem;
@@ -357,7 +359,13 @@ span {
     cursor: pointer;
 }
 
-.confirmation-popup {
+.input-error {
+    border: solid;
+    border-width: .2rem;
+    border-color: var(--error-color)
+}
+
+.popup {
     width: 40rem;
     background: var(--bg-color);
     border-radius: .8rem;
@@ -377,20 +385,38 @@ span {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.confirmation-popup i {
+#confirmation-popup i {
     font-size: 11rem;
     color: var(--main-color);
 }
 
-.confirmation-popup h2 {
+#error-popup i {
+    font-size: 11rem;
+    color: var(--error-color);
+}
+
+#error-popup span {
+    color: var(--error-color);
+}
+
+#error-popup .btn {
+    background: var(--error-color);
+    box-shadow: 0 0 1rem var(--error-color);
+}
+
+#error-popup ul {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.popup h2 {
     font-size: 3rem;
 }
 
-.confirmation-popup p {
+.popup p {
     font-size: 1.6rem;
     margin: .3rem 0 1rem;
 }
-
 
 .footer {
     display: flex;
