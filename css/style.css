@@ -102,6 +102,10 @@ section {
     }
 }
 
+.home-content {
+    width: 95%;
+}
+
 .home-content h3 {
     font-size: 3.2rem;
     font-weight: 700;
@@ -123,6 +127,11 @@ span {
 
 .home-content p {
     font-size: 1.6rem;
+}
+
+.home-content p a{
+    color: var(--main-color);
+    font-weight: bold;
 }
 
 .social-media a {
